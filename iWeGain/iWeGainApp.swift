@@ -10,6 +10,8 @@ struct iWeGainApp: App {
     #if os(iOS)
     /// Follows the active workout for the whole app run; its buttons work even with the app in the background.
     private let liveActivity: WorkoutLiveActivityManager
+    /// Keeps the Apple Watch app in step with the workout, and applies what's logged on it.
+    private let watchSync: WatchSync
     #endif
     private let restSounds: WorkoutRestSounds
     private let reminders: ReminderScheduler
@@ -28,6 +30,8 @@ struct iWeGainApp: App {
         #if os(iOS)
         liveActivity = container.makeWorkoutLiveActivityManager()
         liveActivity.start()
+        watchSync = container.makeWatchSync()
+        watchSync.start()
         #endif
         restSounds = container.makeWorkoutRestSounds()
         restSounds.start()

@@ -15,6 +15,7 @@
 		A1000016306D48790049FBDF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A1000026306D48790049FBDF /* FirebaseCrashlytics */; };
 		A1000017306D48790049FBDF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A1000027306D48790049FBDF /* GoogleSignIn */; };
 		C3E2B010306D48790049FBDF /* iWeGainWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4F3C004306D48790049FBDF /* iWeGainWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D4F3C001306D48790049FBDF /* iWeGainWatch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,13 @@
 			remoteGlobalIDString = C3E2B005306D48790049FBDF;
 			remoteInfo = iWeGainWidgets;
 		};
+		D4F3C00A306D48790049FBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1C09444306D48790049FBDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4F3C006306D48790049FBDF;
+			remoteInfo = iWeGainWatch;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,12 +52,22 @@
 			);
 			name = "Embed Foundation Extensions";
 		};
+		D4F3C005306D48790049FBDF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolder = Product;
+			files = (
+				D4F3C004306D48790049FBDF /* iWeGainWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A1C0944C306D48790049FBDF /* iWeGain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeGain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D1A001306D48790049FBDF /* iWeGainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iWeGainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iWeGainWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4F3C001306D48790049FBDF /* iWeGainWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeGainWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -96,6 +114,16 @@
 			path = iWeGainWidgets;
 			sourceTree = "<group>";
 		};
+		D4F3C002306D48790049FBDF /* iWeGainWatch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iWeGainWatch;
+			sourceTree = "<group>";
+		};
+		D4F3C003306D48790049FBDF /* WatchShared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WatchShared;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +149,11 @@
 			files = (
 			);
 		};
+		D4F3C008306D48790049FBDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -131,6 +164,8 @@
 				B2D1A002306D48790049FBDF /* iWeGainTests */,
 				C3E2B002306D48790049FBDF /* Shared */,
 				C3E2B003306D48790049FBDF /* iWeGainWidgets */,
+				D4F3C002306D48790049FBDF /* iWeGainWatch */,
+				D4F3C003306D48790049FBDF /* WatchShared */,
 				A1C0944D306D48790049FBDF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -141,6 +176,7 @@
 				A1C0944C306D48790049FBDF /* iWeGain.app */,
 				B2D1A001306D48790049FBDF /* iWeGainTests.xctest */,
 				C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */,
+				D4F3C001306D48790049FBDF /* iWeGainWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,15 +192,18 @@
 				A1C09449306D48790049FBDF /* Frameworks */,
 				A1C0944A306D48790049FBDF /* Resources */,
 				C3E2B009306D48790049FBDF /* Embed Foundation Extensions */,
+				D4F3C005306D48790049FBDF /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				C3E2B012306D48790049FBDF /* PBXTargetDependency */,
+				D4F3C00B306D48790049FBDF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1C0944E306D48790049FBDF /* iWeGain */,
 				C3E2B002306D48790049FBDF /* Shared */,
+				D4F3C003306D48790049FBDF /* WatchShared */,
 			);
 			name = iWeGain;
 			packageProductDependencies = (
@@ -220,6 +259,25 @@
 			productReference = C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		D4F3C006306D48790049FBDF /* iWeGainWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4F3C00C306D48790049FBDF /* Build configuration list for PBXNativeTarget "iWeGainWatch" */;
+			buildPhases = (
+				D4F3C007306D48790049FBDF /* Sources */,
+				D4F3C008306D48790049FBDF /* Frameworks */,
+				D4F3C009306D48790049FBDF /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				D4F3C002306D48790049FBDF /* iWeGainWatch */,
+				D4F3C003306D48790049FBDF /* WatchShared */,
+			);
+			name = iWeGainWatch;
+			productName = iWeGainWatch;
+			productReference = D4F3C001306D48790049FBDF /* iWeGainWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -238,6 +296,9 @@
 						TestTargetID = A1C0944B306D48790049FBDF;
 					};
 					C3E2B005306D48790049FBDF = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					D4F3C006306D48790049FBDF = {
 						CreatedOnToolsVersion = 27.0;
 					};
 				};
@@ -277,6 +338,7 @@
 				A1C0944B306D48790049FBDF /* iWeGain */,
 				B2D1A003306D48790049FBDF /* iWeGainTests */,
 				C3E2B005306D48790049FBDF /* iWeGainWidgets */,
+				D4F3C006306D48790049FBDF /* iWeGainWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -293,6 +355,11 @@
 			);
 		};
 		C3E2B008306D48790049FBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		D4F3C009306D48790049FBDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -315,6 +382,11 @@
 			files = (
 			);
 		};
+		D4F3C007306D48790049FBDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -328,6 +400,12 @@
 			platformFilter = ios;
 			target = C3E2B005306D48790049FBDF /* iWeGainWidgets */;
 			targetProxy = C3E2B011306D48790049FBDF /* PBXContainerItemProxy */;
+		};
+		D4F3C00B306D48790049FBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = D4F3C006306D48790049FBDF /* iWeGainWatch */;
+			targetProxy = D4F3C00A306D48790049FBDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -666,6 +744,72 @@
 			};
 			name = Release;
 		};
+		D4F3C00D306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainWatch" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KUMU998A4Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = iWeGain;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.iwelogic.gain;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gain.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		D4F3C00E306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainWatch" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KUMU998A4Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = iWeGain;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.iwelogic.gain;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gain.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -698,6 +842,14 @@
 			buildConfigurations = (
 				C3E2B014306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainWidgets" */,
 				C3E2B015306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainWidgets" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		D4F3C00C306D48790049FBDF /* Build configuration list for PBXNativeTarget "iWeGainWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4F3C00D306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainWatch" */,
+				D4F3C00E306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainWatch" */,
 			);
 			defaultConfigurationName = Release;
 		};

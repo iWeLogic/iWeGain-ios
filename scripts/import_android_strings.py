@@ -3,6 +3,9 @@
 
 Usage, from the repo root:
     python3 ios/scripts/import_android_strings.py tab_home tab_settings error_unknown=team_error_unknown
+    python3 ios/scripts/import_android_strings.py --watch next_set set_of
+
+--watch copies from the Wear OS app into the Apple Watch app's catalog.
 
 Each argument is an Android string name, or `plurals:<name>` for a <plurals>; `ios_key=android_key` stores it
 under another key (a plurals needs one: `training_exercise_count=plurals:training_exercises`).
@@ -68,6 +71,11 @@ def localization(value) -> dict:
 
 
 def main(arguments: list[str]) -> None:
+    global ANDROID_RES, CATALOG
+    if arguments[:1] == ["--watch"]:
+        arguments = arguments[1:]
+        ANDROID_RES = ROOT / "android/wear/src/main/res"
+        CATALOG = ROOT / "ios/iWeGainWatch/Resources/Localizable.xcstrings"
     if not arguments:
         sys.exit(__doc__)
     sources = {language: load(suffix) for suffix, language in LANGUAGES.items()}

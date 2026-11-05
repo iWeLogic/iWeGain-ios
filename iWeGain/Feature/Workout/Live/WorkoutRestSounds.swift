@@ -17,11 +17,6 @@ nonisolated enum RestSound: Hashable, Sendable {
 /// Ticks and chimes the running rest while the app is on screen (the sound part of Android's
 /// `WorkoutNotificationManager`). A suspended app can't play anything: there the rest-over notification sounds.
 final class WorkoutRestSounds {
-    /// A chime later than this was missed while the app was suspended, and the notification already sounded.
-    private static let chimeMargin: TimeInterval = 1
-    /// How late a tick may be and still land when the number changes.
-    private static let tickMargin: TimeInterval = 0.1
-
     private let workoutRepository: WorkoutRepository
     private let play: (RestSound) -> Void
     private let isAppActive: () -> Bool
@@ -51,24 +46,15 @@ final class WorkoutRestSounds {
     /// already over (the app started after it ended) or one that changed, which starts a new count.
     func follow(_ rest: RestTimer) async {
         guard !rest.isPaused else { return }
-        var isFirstPass = true
-        var lastTick: Int?
-        while !Task.isCancelled {
-            let remaining = rest.endsAt.timeIntervalSince(now())
-            if remaining <= 0 {
-                if !isFirstPass && -remaining < Self.chimeMargin && isAppActive() { play(.over) }
-                return
+        await RestCountdown.run(
+            endsAt: rest.endsAt,
+            now: now,
+            onSecond: { secondsLeft in
+                if isAppActive(), let tick = RestSound.tick(secondsLeft: secondsLeft) { play(tick) }
+            },
+            onOver: {
+                if isAppActive() { play(.over) }
             }
-            let secondsLeft = Int(remaining.rounded(.up))
-            let untilNextSecond = remaining.truncatingRemainder(dividingBy: 1)
-            if !isFirstPass, secondsLeft != lastTick, untilNextSecond > 1 - Self.tickMargin, isAppActive(),
-               let tick = RestSound.tick(secondsLeft: secondsLeft) {
-                play(tick)
-                lastTick = secondsLeft
-            }
-            isFirstPass = false
-            // Wakes on each whole second before the end, so the ticks land when the number changes.
-            try? await Task.sleep(for: .seconds(untilNextSecond == 0 ? 1 : untilNextSecond))
-        }
+        )
     }
 }

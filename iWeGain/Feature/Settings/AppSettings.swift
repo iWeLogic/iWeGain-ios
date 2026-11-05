@@ -14,16 +14,3 @@ nonisolated enum ThemeMode: String, CaseIterable, Codable, Sendable {
     case system = "System", light = "Light", dark = "Dark"
 }
 
-nonisolated enum WeightUnit: String, CaseIterable, Codable, Sendable {
-    case kg = "Kg", lb = "Lb"
-
-    private static let lbPerKg = 2.20462
-
-    /// Converts kilograms (how weights are stored) to this unit.
-    func fromKg(_ kg: Double) -> Double { self == .kg ? kg : kg * Self.lbPerKg }
-
-    func toKg(_ value: Double) -> Double { self == .kg ? value : value / Self.lbPerKg }
-
-    /// Step of the − / + weight buttons.
-    var step: Double { self == .kg ? 0.25 : 0.5 }
-}

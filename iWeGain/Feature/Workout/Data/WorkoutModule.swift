@@ -29,6 +29,12 @@ extension AppContainer {
         )
     }
 
+    #if os(iOS)
+    func makeWatchSync() -> WatchSync {
+        WatchSync(workoutRepository: workoutRepository, settingsRepository: settingsRepository, now: store.now)
+    }
+    #endif
+
     func makeWorkoutViewModel() -> WorkoutViewModel {
         WorkoutViewModel(
             workoutRepository: workoutRepository,
