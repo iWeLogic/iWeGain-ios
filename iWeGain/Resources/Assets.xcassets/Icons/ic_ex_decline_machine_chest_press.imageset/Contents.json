@@ -1,0 +1,16 @@
+{
+  "images": [
+    {
+      "filename": "ic_ex_decline_machine_chest_press.svg",
+      "idiom": "universal"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "preserves-vector-representation": true,
+    "template-rendering-intent": "template"
+  }
+}

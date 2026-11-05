@@ -34,5 +34,6 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # Secrets
+GoogleService-Info.plist
 *.xcconfig.local
 .env

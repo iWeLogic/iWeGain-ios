@@ -6,20 +6,117 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A1000011306D48790049FBDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A1000021306D48790049FBDF /* FirebaseAuth */; };
+		A1000012306D48790049FBDF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A1000022306D48790049FBDF /* FirebaseFirestore */; };
+		A1000013306D48790049FBDF /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A1000023306D48790049FBDF /* FirebaseMessaging */; };
+		A1000014306D48790049FBDF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A1000024306D48790049FBDF /* FirebaseRemoteConfig */; };
+		A1000015306D48790049FBDF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A1000025306D48790049FBDF /* FirebaseAnalytics */; };
+		A1000016306D48790049FBDF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A1000026306D48790049FBDF /* FirebaseCrashlytics */; };
+		A1000017306D48790049FBDF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A1000027306D48790049FBDF /* GoogleSignIn */; };
+		C3E2B010306D48790049FBDF /* iWeGainWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B2D1A007306D48790049FBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1C09444306D48790049FBDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1C0944B306D48790049FBDF;
+			remoteInfo = iWeGain;
+		};
+		C3E2B011306D48790049FBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1C09444306D48790049FBDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3E2B005306D48790049FBDF;
+			remoteInfo = iWeGainWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C3E2B009306D48790049FBDF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				C3E2B010306D48790049FBDF /* iWeGainWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A1C0944C306D48790049FBDF /* iWeGain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeGain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2D1A001306D48790049FBDF /* iWeGainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iWeGainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iWeGainWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A1000003306D48790049FBDF /* Exceptions for "iWeGain" folder in "iWeGain" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1C0944B306D48790049FBDF /* iWeGain */;
+		};
+		C3E2B004306D48790049FBDF /* Exceptions for "iWeGainWidgets" folder in "iWeGainWidgets" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C3E2B005306D48790049FBDF /* iWeGainWidgets */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A1C0944E306D48790049FBDF /* iWeGain */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1000003306D48790049FBDF /* Exceptions for "iWeGain" folder in "iWeGain" target */,
+			);
 			path = iWeGain;
+			sourceTree = "<group>";
+		};
+		B2D1A002306D48790049FBDF /* iWeGainTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iWeGainTests;
+			sourceTree = "<group>";
+		};
+		C3E2B002306D48790049FBDF /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C3E2B003306D48790049FBDF /* iWeGainWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C3E2B004306D48790049FBDF /* Exceptions for "iWeGainWidgets" folder in "iWeGainWidgets" target */,
+			);
+			path = iWeGainWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A1C09449306D48790049FBDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1000011306D48790049FBDF /* FirebaseAuth in Frameworks */,
+				A1000012306D48790049FBDF /* FirebaseFirestore in Frameworks */,
+				A1000013306D48790049FBDF /* FirebaseMessaging in Frameworks */,
+				A1000014306D48790049FBDF /* FirebaseRemoteConfig in Frameworks */,
+				A1000015306D48790049FBDF /* FirebaseAnalytics in Frameworks */,
+				A1000016306D48790049FBDF /* FirebaseCrashlytics in Frameworks */,
+				A1000017306D48790049FBDF /* GoogleSignIn in Frameworks */,
+			);
+		};
+		B2D1A005306D48790049FBDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		C3E2B007306D48790049FBDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -31,6 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				A1C0944E306D48790049FBDF /* iWeGain */,
+				B2D1A002306D48790049FBDF /* iWeGainTests */,
+				C3E2B002306D48790049FBDF /* Shared */,
+				C3E2B003306D48790049FBDF /* iWeGainWidgets */,
 				A1C0944D306D48790049FBDF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				A1C0944C306D48790049FBDF /* iWeGain.app */,
+				B2D1A001306D48790049FBDF /* iWeGainTests.xctest */,
+				C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,16 +155,70 @@
 				A1C09448306D48790049FBDF /* Sources */,
 				A1C09449306D48790049FBDF /* Frameworks */,
 				A1C0944A306D48790049FBDF /* Resources */,
+				C3E2B009306D48790049FBDF /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3E2B012306D48790049FBDF /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1C0944E306D48790049FBDF /* iWeGain */,
+				C3E2B002306D48790049FBDF /* Shared */,
+			);
+			name = iWeGain;
+			packageProductDependencies = (
+				A1000021306D48790049FBDF /* FirebaseAuth */,
+				A1000022306D48790049FBDF /* FirebaseFirestore */,
+				A1000023306D48790049FBDF /* FirebaseMessaging */,
+				A1000024306D48790049FBDF /* FirebaseRemoteConfig */,
+				A1000025306D48790049FBDF /* FirebaseAnalytics */,
+				A1000026306D48790049FBDF /* FirebaseCrashlytics */,
+				A1000027306D48790049FBDF /* GoogleSignIn */,
+			);
+			productName = iWeGain;
+			productReference = A1C0944C306D48790049FBDF /* iWeGain.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B2D1A003306D48790049FBDF /* iWeGainTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2D1A009306D48790049FBDF /* Build configuration list for PBXNativeTarget "iWeGainTests" */;
+			buildPhases = (
+				B2D1A004306D48790049FBDF /* Sources */,
+				B2D1A005306D48790049FBDF /* Frameworks */,
+				B2D1A006306D48790049FBDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2D1A008306D48790049FBDF /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B2D1A002306D48790049FBDF /* iWeGainTests */,
+			);
+			name = iWeGainTests;
+			productName = iWeGainTests;
+			productReference = B2D1A001306D48790049FBDF /* iWeGainTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C3E2B005306D48790049FBDF /* iWeGainWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3E2B013306D48790049FBDF /* Build configuration list for PBXNativeTarget "iWeGainWidgets" */;
+			buildPhases = (
+				C3E2B006306D48790049FBDF /* Sources */,
+				C3E2B007306D48790049FBDF /* Frameworks */,
+				C3E2B008306D48790049FBDF /* Resources */,
 			);
 			buildRules = (
 			);
 			fileSystemSynchronizedGroups = (
-				A1C0944E306D48790049FBDF /* iWeGain */,
+				C3E2B002306D48790049FBDF /* Shared */,
+				C3E2B003306D48790049FBDF /* iWeGainWidgets */,
 			);
-			name = iWeGain;
-			productName = iWeGain;
-			productReference = A1C0944C306D48790049FBDF /* iWeGain.app */;
-			productType = "com.apple.product-type.application";
+			name = iWeGainWidgets;
+			productName = iWeGainWidgets;
+			productReference = C3E2B001306D48790049FBDF /* iWeGainWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -77,6 +233,13 @@
 					A1C0944B306D48790049FBDF = {
 						CreatedOnToolsVersion = 27.0;
 					};
+					B2D1A003306D48790049FBDF = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = A1C0944B306D48790049FBDF;
+					};
+					C3E2B005306D48790049FBDF = {
+						CreatedOnToolsVersion = 27.0;
+					};
 				};
 			};
 			buildConfigurationList = A1C09447306D48790049FBDF /* Build configuration list for PBXProject "iWeGain" */;
@@ -85,21 +248,51 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				fr,
+				id,
+				it,
+				ja,
+				ko,
+				nl,
+				pl,
+				"pt-BR",
+				ru,
+				tr,
+				uk,
+				"zh-Hans",
 			);
 			mainGroup = A1C09443306D48790049FBDF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A1000002306D48790049FBDF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A1C0944D306D48790049FBDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				A1C0944B306D48790049FBDF /* iWeGain */,
+				B2D1A003306D48790049FBDF /* iWeGainTests */,
+				C3E2B005306D48790049FBDF /* iWeGainWidgets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A1C0944A306D48790049FBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		B2D1A006306D48790049FBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		C3E2B008306D48790049FBDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -112,7 +305,31 @@
 			files = (
 			);
 		};
+		B2D1A004306D48790049FBDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		C3E2B006306D48790049FBDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2D1A008306D48790049FBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1C0944B306D48790049FBDF /* iWeGain */;
+			targetProxy = B2D1A007306D48790049FBDF /* PBXContainerItemProxy */;
+		};
+		C3E2B012306D48790049FBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = C3E2B005306D48790049FBDF /* iWeGainWidgets */;
+			targetProxy = C3E2B011306D48790049FBDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A1C09455306D487A0049FBDF /* Debug configuration for PBXProject "iWeGain" */ = {
@@ -236,6 +453,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = iWeGain/iWeGain.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = iWeGain/iWeGain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KUMU998A4Q;
@@ -244,6 +463,9 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iWeGain/Info.plist;
+				"INFOPLIST_KEY_NSSupportsLiveActivities[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_NSSupportsLiveActivities[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -259,18 +481,18 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.iWeGain;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 27.0;
 			};
 			name = Debug;
@@ -280,6 +502,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = iWeGain/iWeGain.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = iWeGain/iWeGain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KUMU998A4Q;
@@ -288,6 +512,9 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iWeGain/Info.plist;
+				"INFOPLIST_KEY_NSSupportsLiveActivities[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_NSSupportsLiveActivities[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -303,19 +530,139 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.iWeGain;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		B2D1A010306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KUMU998A4Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gainTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iWeGain.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iWeGain";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		B2D1A011306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KUMU998A4Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gainTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iWeGain.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iWeGain";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		C3E2B014306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainWidgets" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = accentPrimary;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KUMU998A4Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iWeGainWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iWeGain;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gain.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C3E2B015306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainWidgets" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = accentPrimary;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KUMU998A4Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iWeGainWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iWeGain;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iwelogic.gain.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -338,7 +685,80 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		B2D1A009306D48790049FBDF /* Build configuration list for PBXNativeTarget "iWeGainTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2D1A010306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainTests" */,
+				B2D1A011306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		C3E2B013306D48790049FBDF /* Build configuration list for PBXNativeTarget "iWeGainWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3E2B014306D48790049FBDF /* Debug configuration for PBXNativeTarget "iWeGainWidgets" */,
+				C3E2B015306D48790049FBDF /* Release configuration for PBXNativeTarget "iWeGainWidgets" */,
+			);
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+		A1000002306D48790049FBDF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1000021306D48790049FBDF /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A1000022306D48790049FBDF /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		A1000023306D48790049FBDF /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		A1000024306D48790049FBDF /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		A1000025306D48790049FBDF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		A1000026306D48790049FBDF /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000001306D48790049FBDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		A1000027306D48790049FBDF /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000002306D48790049FBDF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1C09444306D48790049FBDF /* Project object */;
 	validationLevel = 1;
