@@ -10,7 +10,7 @@ struct FinishWorkoutSheet: View {
     let onAction: (WorkoutAction) -> Void
 
     var body: some View {
-        ScrollView {
+        FittedSheetScroll {
             VStack(spacing: Spacing.x20) {
                 VStack(spacing: Spacing.x4) {
                     Text("finish_title")
@@ -59,8 +59,6 @@ struct FinishWorkoutSheet: View {
             .padding(.top, Spacing.x24)
             .padding(.bottom, Spacing.x16)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)
         .presentationBackground(Color.bgSurface)
     }

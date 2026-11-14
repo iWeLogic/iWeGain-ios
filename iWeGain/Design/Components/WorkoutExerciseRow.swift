@@ -1,12 +1,14 @@
 import SwiftUI
 
 /// Exercise in the workout overview (Figma "Workout Exercise Row"): the exercise's own picture on a
-/// tile coloured by [status], with a ✓ or skip mark in the corner once it's done or skipped.
+/// tile coloured by [status], with a ✓ or skip mark in the corner once it's done or skipped. A `.partial`
+/// exercise gets a pie of [doneShare] (done ÷ all its sets) instead, as not every set was done.
 struct WorkoutExerciseRow: View {
     let icon: String
     let title: String
     let subtitle: String
     let status: WorkoutExerciseStatus
+    var doneShare: Double = 1
     let action: () -> Void
 
     var body: some View {
@@ -45,7 +47,7 @@ struct WorkoutExerciseRow: View {
 
     private var badgeColor: Color {
         switch status {
-        case .done: .accentSoft
+        case .done, .partial: .accentSoft
         case .active: .accentPrimary
         case .upcoming, .skipped: .bgSurface2
         }
@@ -53,7 +55,7 @@ struct WorkoutExerciseRow: View {
 
     private var iconColor: Color {
         switch status {
-        case .done: .accentPrimary
+        case .done, .partial: .accentPrimary
         case .active: .accentOn
         case .upcoming: .textSecondary
         case .skipped: .textTertiary
@@ -62,7 +64,7 @@ struct WorkoutExerciseRow: View {
 
     private var titleColor: Color {
         switch status {
-        case .done: .textSecondary
+        case .done, .partial: .textSecondary
         case .skipped: .textTertiary
         case .active, .upcoming: .textPrimary
         }
@@ -73,6 +75,7 @@ struct WorkoutExerciseRow: View {
         switch status {
         case .done: StatusMark(icon: "ic_check", background: .accentPrimary, foreground: .accentOn)
         case .skipped: StatusMark(icon: "ic_skip_forward", background: .bgSurface2, foreground: .textSecondary)
+        case .partial: DoneShareMark(share: doneShare)
         case .active, .upcoming: EmptyView()
         }
     }
@@ -96,9 +99,29 @@ private struct StatusMark: View {
     }
 }
 
+/// The corner mark of a partly done exercise: a pie of [share], clockwise from 12 o'clock, on a grey disc.
+private struct DoneShareMark: View {
+    let share: Double
+
+    var body: some View {
+        ZStack {
+            Circle().fill(Color.textTertiary)
+            Circle()
+                .trim(from: 0, to: min(max(share, 0), 1))
+                .stroke(Color.accentPrimary, lineWidth: 8)
+                .padding(4)
+                .rotationEffect(.degrees(-90))
+        }
+        .frame(width: 16, height: 16)
+        .padding(3)
+        .background(Color.bgSurface, in: .circle)
+    }
+}
+
 #Preview {
     VStack(spacing: Spacing.x12) {
         WorkoutExerciseRow(icon: "ic_ex_barbell_bench_press", title: "Bench Press", subtitle: "4 of 4 sets · best 100 kg × 5", status: .done, action: {})
+        WorkoutExerciseRow(icon: "ic_ex_barbell_squat", title: "Squat", subtitle: "3 of 4 · 1 skipped · best 120 kg × 5", status: .partial, doneShare: 0.75, action: {})
         WorkoutExerciseRow(icon: "ic_ex_overhead_barbell_press", title: "Overhead Press", subtitle: "1 of 3 sets done · tap to continue", status: .active, action: {})
         WorkoutExerciseRow(icon: "ic_ex_triceps_pushdown", title: "Triceps Pushdown", subtitle: "3 sets · rest 60 s", status: .upcoming, action: {})
         WorkoutExerciseRow(icon: "ic_ex_dumbbell_lateral_raise", title: "Lateral Raise", subtitle: "Skipped · 1 of 3 sets done", status: .skipped, action: {})

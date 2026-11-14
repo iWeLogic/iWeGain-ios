@@ -75,6 +75,7 @@ struct WorkoutScreen: View {
                             title: exercise.name,
                             subtitle: exercise.subtitle,
                             status: exercise.status,
+                            doneShare: exercise.doneShare,
                             action: { onAction(.onExerciseTap(index: exercise.index)) }
                         )
                     }

@@ -3,7 +3,8 @@ import SwiftUI
 /// Timer pill with the workout's elapsed time, e.g. "⏱ 24:13".
 struct ElapsedChip: View {
     let text: String
-    var background: Color = .bgSurface
+    /// nil in a toolbar, where the system's glass bubble is the background.
+    var background: Color?
     var foreground: Color = .textPrimary
     var style: AppTextStyle = .subhead
 
@@ -20,12 +21,12 @@ struct ElapsedChip: View {
                 .foregroundStyle(foreground)
                 .lineLimit(1)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 6)
-        .background(background, in: .capsule)
+        .padding(.horizontal, background == nil ? 0 : 10)
+        .padding(.vertical, background == nil ? 0 : 6)
+        .background(background ?? .clear, in: .capsule)
     }
 }
 
 #Preview {
-    ElapsedChip(text: "24:13").padding().background(Color.bgBase)
+    ElapsedChip(text: "24:13", background: .bgSurface).padding().background(Color.bgBase)
 }

@@ -136,6 +136,9 @@ final class WorkoutViewModel: BaseViewModel<WorkoutState, WorkoutAction, Workout
             .skipped
         } else if exercise.pendingCount == 0 && done == 0 {
             .skipped
+        } else if exercise.pendingCount == 0 && exercise.skippedCount > 0 {
+            // Finished, but not every set was done: no ✓, the pie shows how much was.
+            .partial
         } else if exercise.pendingCount == 0 {
             .done
         } else if isRunning {
@@ -150,6 +153,12 @@ final class WorkoutViewModel: BaseViewModel<WorkoutState, WorkoutAction, Workout
             } else {
                 Strings.format("workout_exercise_done_no_best", done, total)
             }
+        case .partial:
+            if let best = exercise.bestSet {
+                Strings.format("workout_exercise_done_skipped", done, total, exercise.skippedCount, unit.setResultText(best.weightKg ?? 0, reps: best.reps ?? 0))
+            } else {
+                Strings.format("workout_exercise_done_skipped_no_best", done, total, exercise.skippedCount)
+            }
         case .active: Strings.format("workout_exercise_continue", done, total)
         case .upcoming:
             if done + exercise.skippedCount > 0 {
@@ -159,6 +168,13 @@ final class WorkoutViewModel: BaseViewModel<WorkoutState, WorkoutAction, Workout
             }
         case .skipped: Strings.format("workout_exercise_skipped", done, total)
         }
-        return WorkoutExerciseUi(index: index, icon: exercise.exercise.imageName, name: exercise.exercise.name, subtitle: subtitle, status: status)
+        return WorkoutExerciseUi(
+            index: index,
+            icon: exercise.exercise.imageName,
+            name: exercise.exercise.name,
+            subtitle: subtitle,
+            status: status,
+            doneShare: total == 0 ? 1 : Double(done) / Double(total)
+        )
     }
 }

@@ -7,52 +7,51 @@ struct LogSetSheet: View {
     let onAction: (LogSetAction) -> Void
 
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                VStack(spacing: Spacing.x20) {
-                    NumberInput(
-                        label: logSet.weightLabel,
-                        value: logSet.weight.isEmpty ? "0" : logSet.weight,
-                        hint: logSet.weightHint,
-                        isFocused: logSet.focused == .weight,
-                        onValueTap: { onAction(.onFieldTap(.weight)) },
-                        onDecrease: { onAction(.onWeightDecrease) },
-                        onIncrease: { onAction(.onWeightIncrease) }
-                    )
-                    NumberInput(
-                        label: Strings.text("log_set_reps"),
-                        value: logSet.reps,
-                        hint: logSet.repsHint,
-                        isFocused: logSet.focused == .reps,
-                        onValueTap: { onAction(.onFieldTap(.reps)) },
-                        onDecrease: { onAction(.onRepsDecrease) },
-                        onIncrease: { onAction(.onRepsIncrease) }
-                    )
-                    if let isDone = logSet.isDone {
-                        VStack(spacing: Spacing.x8) {
-                            Text("workout_edit_status").textStyle(.subhead).foregroundStyle(Color.textSecondary)
-                            AppSegmentedControl(
-                                options: ["workout_edit_status_done", "workout_details_set_skipped"],
-                                selectedIndex: isDone ? 0 : 1,
-                                onSelect: { onAction(.onStatusChange(isDone: $0 == 0)) },
-                                trackColor: .bgBase
-                            )
-                        }
-                    } else if logSet.focused == nil {
-                        Text("log_set_type_hint")
-                            .textStyle(.caption)
-                            .foregroundStyle(Color.textTertiary)
+        // As tall as the inputs and, while a field is being typed in, the keypad.
+        FittedSheetScroll {
+            VStack(spacing: Spacing.x20) {
+                NumberInput(
+                    label: logSet.weightLabel,
+                    value: logSet.weight.isEmpty ? "0" : logSet.weight,
+                    hint: logSet.weightHint,
+                    isFocused: logSet.focused == .weight,
+                    onValueTap: { onAction(.onFieldTap(.weight)) },
+                    onDecrease: { onAction(.onWeightDecrease) },
+                    onIncrease: { onAction(.onWeightIncrease) }
+                )
+                NumberInput(
+                    label: Strings.text("log_set_reps"),
+                    value: logSet.reps,
+                    hint: logSet.repsHint,
+                    isFocused: logSet.focused == .reps,
+                    onValueTap: { onAction(.onFieldTap(.reps)) },
+                    onDecrease: { onAction(.onRepsDecrease) },
+                    onIncrease: { onAction(.onRepsIncrease) }
+                )
+                if let isDone = logSet.isDone {
+                    VStack(spacing: Spacing.x8) {
+                        Text("workout_edit_status").textStyle(.subhead).foregroundStyle(Color.textSecondary)
+                        AppSegmentedControl(
+                            options: ["workout_edit_status_done", "workout_details_set_skipped"],
+                            selectedIndex: isDone ? 0 : 1,
+                            onSelect: { onAction(.onStatusChange(isDone: $0 == 0)) },
+                            trackColor: .bgBase
+                        )
                     }
-                    Button { onAction(.onSave) } label: {
-                        IconLabel(verbatim: logSet.saveTitle, icon: logSet.startsRest ? "ic_timer" : "ic_check")
-                    }
-                    .buttonStyle(.appPrimary)
-                    .disabled(!logSet.canSave)
+                } else if logSet.focused == nil {
+                    Text("log_set_type_hint")
+                        .textStyle(.caption)
+                        .foregroundStyle(Color.textTertiary)
                 }
-                .padding(.horizontal, Spacing.x16)
-                .padding(.vertical, Spacing.x16)
+                Button { onAction(.onSave) } label: {
+                    IconLabel(verbatim: logSet.saveTitle, icon: logSet.startsRest ? "ic_timer" : "ic_check")
+                }
+                .buttonStyle(.appPrimary)
+                .disabled(!logSet.canSave)
             }
-            .scrollBounceBehavior(.basedOnSize)
+            .padding(.horizontal, Spacing.x16)
+            .padding(.vertical, Spacing.x16)
+        } footer: {
             if let focused = logSet.focused {
                 Keypad(
                     onKey: { onAction(.onKey($0)) },
@@ -93,6 +92,5 @@ struct LogSetSheet: View {
                 onAction: { _ in }
             )
         }
-        .presentationDetents([.large])
     }
 }

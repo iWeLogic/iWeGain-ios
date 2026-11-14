@@ -146,7 +146,7 @@ private struct UserPickerSheet: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            FittedSheetScroll {
                 VStack(spacing: Spacing.x12) {
                     VStack(spacing: 0) {
                         ForEach(users) { user in
@@ -174,7 +174,6 @@ private struct UserPickerSheet: View {
                 ToolbarItem(placement: .cancellationAction) { Button(role: .close) { dismiss() } }
             }
         }
-        .presentationDetents([.medium, .large])
         .presentationBackground(Color.bgBase)
     }
 

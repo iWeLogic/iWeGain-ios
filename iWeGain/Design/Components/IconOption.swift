@@ -64,7 +64,7 @@ struct IconPickerSheet: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            FittedSheetScroll {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: Spacing.x12), count: 5), spacing: Spacing.x12) {
                     ForEach(ItemIcon.allCases, id: \.self) { icon in
                         IconOption(icon: icon.imageName, isSelected: icon == selection, action: { onSelect(icon) })
@@ -80,7 +80,6 @@ struct IconPickerSheet: View {
             }
             .background(Color.bgBase)
         }
-        .presentationDetents([.medium])
         .presentationBackground(Color.bgBase)
     }
 }

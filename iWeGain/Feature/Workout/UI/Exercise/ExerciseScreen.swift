@@ -99,7 +99,6 @@ struct ExerciseScreen: View {
                 NavigationStack {
                     LogSetSheet(logSet: logSet, onAction: { onAction(.onLogSet($0)) })
                 }
-                .presentationDetents([.large])
             }
         }
         .alert(

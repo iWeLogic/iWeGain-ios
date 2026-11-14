@@ -44,6 +44,34 @@ struct WorkoutScreensTests {
         #expect(!viewModel.state.isFree)
     }
 
+    @Test func exerciseWithSkippedSetsIsPartlyDoneNotDone() async throws {
+        try startTraining(sets: 4)
+        let repository = container.workoutRepository
+        try repository.startExercise(exerciseIndex: 0)
+        for set in 0..<3 { try repository.completeSet(exerciseIndex: 0, setIndex: set, weightKg: 100, reps: 5) }
+        try repository.skipSet(exerciseIndex: 0, setIndex: 3)
+        let viewModel = container.makeWorkoutViewModel()
+        viewModel.onAction(.onAppear)
+        await waitUntil { viewModel.state.isLoaded }
+
+        let exercise = try #require(viewModel.state.exercises.first)
+        #expect(exercise.status == .partial)
+        #expect(exercise.doneShare == 0.75)
+        #expect(exercise.subtitle == "3 of 4 · 1 skipped · best 100 kg × 5")
+    }
+
+    @Test func exerciseWithEverySetDoneIsDone() async throws {
+        try startTraining(sets: 2)
+        let repository = container.workoutRepository
+        try repository.startExercise(exerciseIndex: 0)
+        for set in 0..<2 { try repository.completeSet(exerciseIndex: 0, setIndex: set, weightKg: 100, reps: 5) }
+        let viewModel = container.makeWorkoutViewModel()
+        viewModel.onAction(.onAppear)
+        await waitUntil { viewModel.state.isLoaded }
+
+        #expect(viewModel.state.exercises.map(\.status) == [.done])
+    }
+
     @Test func finishingClosesTheWorkout() async throws {
         try startTraining()
         let viewModel = container.makeWorkoutViewModel()

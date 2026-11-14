@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Sheet with a single-choice list. Tapping an option applies it; the caller closes the sheet.
+/// Sheet with a single-choice list, as tall as the list. Tapping an option applies it; the caller closes the sheet.
 struct OptionPickerSheet<Option: Hashable>: View {
     let title: LocalizedStringKey
     let options: [Option]
@@ -12,7 +12,7 @@ struct OptionPickerSheet<Option: Hashable>: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            FittedSheetScroll {
                 VStack(spacing: 0) {
                     ForEach(options.indices, id: \.self) { index in
                         if index > 0 { Divider().overlay(Color.borderDefault).padding(.leading, Spacing.x16) }
@@ -32,7 +32,6 @@ struct OptionPickerSheet<Option: Hashable>: View {
                 }
             }
         }
-        .presentationDetents([.medium, .large])
         .presentationBackground(Color.bgBase)
     }
 

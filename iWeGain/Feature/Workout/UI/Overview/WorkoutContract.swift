@@ -36,12 +36,17 @@ struct WorkoutExerciseUi: Identifiable, Equatable {
     let name: String
     let subtitle: String
     let status: WorkoutExerciseStatus
+    /// Share of its sets that were done, drawn as the pie of a `.partial` row.
+    var doneShare: Double = 1
 
     var id: Int { index }
 }
 
 enum WorkoutExerciseStatus: Equatable {
-    case done, active, upcoming, skipped
+    case done
+    /// No sets left, but some were skipped: a pie of the done share instead of the ✓.
+    case partial
+    case active, upcoming, skipped
 }
 
 struct FinishSummaryUi: Equatable {
