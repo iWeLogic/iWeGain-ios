@@ -39,16 +39,28 @@ struct AppTextField: View {
     }
 }
 
+/// One overlay for every style: switching between `dashedBorder`/`insideBorder` branches would give the
+/// TextField a new identity when focus changes the style, and the new field would drop the focus.
 private struct FieldBorder: ViewModifier {
     enum Style { case none, dashed, focused, error }
     let style: Style
 
     func body(content: Content) -> some View {
+        content.overlay(
+            RoundedRectangle(cornerRadius: Radius.md)
+                .inset(by: lineWidth / 2)
+                .stroke(color, style: StrokeStyle(lineWidth: lineWidth, dash: style == .dashed ? [4, 3] : []))
+        )
+    }
+
+    private let lineWidth: CGFloat = 1.5
+
+    private var color: Color {
         switch style {
-        case .none: content
-        case .dashed: content.dashedBorder(.borderDefault, cornerRadius: Radius.md, dash: 4, gap: 3)
-        case .focused: content.insideBorder(.accentPrimary, cornerRadius: Radius.md)
-        case .error: content.insideBorder(.statusDanger, cornerRadius: Radius.md)
+        case .none: .clear
+        case .dashed: .borderDefault
+        case .focused: .accentPrimary
+        case .error: .statusDanger
         }
     }
 }

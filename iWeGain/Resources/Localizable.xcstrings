@@ -2953,6 +2953,101 @@
         }
       }
     },
+    "auth_error_account_exists" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This email already has an account. Sign in the way you did before, and this sign-in method will be added to it."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für diese E-Mail gibt es schon ein Konto. Melde dich so an wie beim letzten Mal, dann wird diese Anmeldemethode hinzugefügt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya hay una cuenta con este correo. Inicia sesión como lo hiciste antes y se añadirá este método de inicio de sesión."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un compte existe déjà avec cette adresse e-mail. Connectez-vous comme la dernière fois et ce mode de connexion y sera ajouté."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email ini sudah punya akun. Masuk dengan cara yang kamu pakai sebelumnya, lalu metode masuk ini akan ditambahkan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esiste già un account con questa email. Accedi come hai fatto in precedenza e questo metodo di accesso verrà aggiunto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このメールアドレスのアカウントは既にあります。前回と同じ方法でサインインすると、このサインイン方法が追加されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 이메일로 된 계정이 이미 있어요. 이전에 사용한 방법으로 로그인하면 이 로그인 방법이 추가돼요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er is al een account met dit e-mailadres. Log in zoals je eerder deed, dan wordt deze inlogmethode toegevoegd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto z tym adresem e-mail już istnieje. Zaloguj się tak jak poprzednio, a ta metoda logowania zostanie do niego dodana."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Já existe uma conta com este e-mail. Entre como você fez antes e este método de login será adicionado a ela."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аккаунт с этой почтой уже есть. Войдите так же, как раньше, и этот способ входа будет добавлен к нему."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu e-postayla zaten bir hesap var. Daha önce nasıl giriş yaptıysan öyle giriş yap, bu giriş yöntemi hesabına eklenir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Акаунт із цією поштою вже існує. Увійдіть так само, як раніше, і цей спосіб входу буде додано до нього."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此邮箱已有账号。请使用你之前的方式登录，此登录方式将被添加到该账号。"
+          }
+        }
+      }
+    },
     "auth_error_method_disabled" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -32392,6 +32487,101 @@
         }
       }
     },
+    "settings_delete_account_message_apple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Konto und alle deine Trainings, Routinen und Einstellungen werden auf allen Geräten gelöscht, und du verlässt alle Teams. Das kann nicht rückgängig gemacht werden. Melde dich zur Bestätigung mit deinem Apple Account an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your account and all your workouts, trainings and settings will be deleted from every device, and you will leave all teams. This can't be undone. To confirm, sign in with your Apple Account."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu cuenta y todos tus entrenamientos, rutinas y ajustes se eliminarán de todos los dispositivos, y saldrás de todos los equipos. No se puede deshacer. Para confirmar, inicia sesión con tu cuenta de Apple."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre compte et toutes vos séances, routines et réglages seront supprimés de tous vos appareils, et vous quitterez toutes les équipes. Cette action est irréversible. Pour confirmer, connectez-vous avec votre compte Apple."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akunmu beserta semua latihan, program, dan setelan akan dihapus dari semua perangkat, dan kamu akan keluar dari semua tim. Tindakan ini tidak bisa dibatalkan. Untuk konfirmasi, masuk dengan Akun Apple-mu."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il tuo account e tutti i tuoi allenamenti, schede e impostazioni verranno eliminati da tutti i dispositivi, e uscirai da tutti i team. L'operazione non può essere annullata. Per confermare, accedi con il tuo Account Apple."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウントとすべてのワークアウト、トレーニング、設定がすべてのデバイスから削除され、すべてのチームから退出します。この操作は元に戻せません。確認のため、Apple アカウントでサインインしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정과 모든 운동, 루틴, 설정이 모든 기기에서 삭제되며 모든 팀에서 나가게 됩니다. 이 작업은 되돌릴 수 없어요. 확인하려면 Apple 계정으로 로그인하세요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je account en al je workouts, trainingen en instellingen worden van elk apparaat verwijderd en je verlaat alle teams. Dit kan niet ongedaan worden gemaakt. Log in met je Apple Account om te bevestigen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje konto oraz wszystkie treningi i ustawienia zostaną usunięte ze wszystkich urządzeń, a Ty opuścisz wszystkie zespoły. Tej operacji nie można cofnąć. Aby potwierdzić, zaloguj się na swoje konto Apple."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sua conta e todos os seus treinos e ajustes serão excluídos de todos os dispositivos, e você sairá de todas as equipes. Não é possível desfazer. Para confirmar, inicie sessão com sua Conta Apple."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш аккаунт и все тренировки, планы и настройки будут удалены со всех устройств, а вы выйдете из всех команд. Это нельзя отменить. Чтобы подтвердить, войдите со своим аккаунтом Apple."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesabın ve tüm antrenmanların, programların ve ayarların her cihazdan silinir ve tüm takımlardan ayrılırsın. Bu işlem geri alınamaz. Onaylamak için Apple Hesabınla giriş yap."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш акаунт і всі тренування, плани та налаштування буде видалено з усіх пристроїв, а ви вийдете з усіх команд. Це не можна скасувати. Щоб підтвердити, увійдіть зі своїм акаунтом Apple."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的账号以及所有训练记录、训练计划和设置都将从所有设备中删除，并且你将退出所有团队。此操作无法撤销。请使用你的 Apple 账户登录以确认。"
+          }
+        }
+      }
+    },
     "settings_delete_account_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34694,6 +34884,101 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练提醒"
+          }
+        }
+      }
+    },
+    "sign_in_apple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter mit Apple"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue with Apple"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar con Apple"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer avec Apple"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjutkan dengan Apple"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continua con Apple"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple で続行"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple로 계속하기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doorgaan met Apple"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontynuuj z Apple"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar com a Apple"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить с Apple"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple ile devam et"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продовжити з Apple"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用 Apple 继续"
           }
         }
       }

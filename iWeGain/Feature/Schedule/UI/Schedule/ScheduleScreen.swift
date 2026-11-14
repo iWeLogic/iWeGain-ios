@@ -3,22 +3,22 @@ import SwiftUI
 struct ScheduleRoot: View {
     @State private var viewModel: ScheduleViewModel
     @State private var errorMessage: LocalizedStringResource?
-    /// A training picked in Select training, handed over by the navigation; [onPickedTrainingHandled] clears it.
+    /// A training picked in Select training, handed over by the navigation; [takePickedTraining] takes it, once.
     private let pickedTrainingId: String?
-    private let onPickedTrainingHandled: () -> Void
+    private let takePickedTraining: () -> String?
     private let onNavigateToSelectTraining: (String?) -> Void
     private let onClose: () -> Void
 
     init(
         viewModel: @autoclosure () -> ScheduleViewModel,
         pickedTrainingId: String?,
-        onPickedTrainingHandled: @escaping () -> Void,
+        takePickedTraining: @escaping () -> String?,
         onNavigateToSelectTraining: @escaping (String?) -> Void,
         onClose: @escaping () -> Void
     ) {
         _viewModel = State(initialValue: viewModel())
         self.pickedTrainingId = pickedTrainingId
-        self.onPickedTrainingHandled = onPickedTrainingHandled
+        self.takePickedTraining = takePickedTraining
         self.onNavigateToSelectTraining = onNavigateToSelectTraining
         self.onClose = onClose
     }
@@ -35,9 +35,10 @@ struct ScheduleRoot: View {
             .errorAlert($errorMessage)
             .task { viewModel.onAction(.onAppear) }
             .onChange(of: pickedTrainingId, initial: true) { _, id in
-                guard let id else { return }
+                // Taking the pick clears it: this can run twice for one pick (the change, then "initial" as the
+                // view reappears, both with the old value), and only the first run may use it.
+                guard id != nil, let id = takePickedTraining() else { return }
                 viewModel.onAction(.onTrainingPicked(id: id))
-                onPickedTrainingHandled()
             }
     }
 }

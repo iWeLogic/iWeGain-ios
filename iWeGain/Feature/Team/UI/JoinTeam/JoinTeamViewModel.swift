@@ -19,11 +19,12 @@ final class JoinTeamViewModel: BaseViewModel<JoinTeamState, JoinTeamAction, Join
         case .onAppear: observe()
         case .onJoinTap: join()
         case .onNotNowTap: sendEvent(.close)
-        case .onGoogleTap: signInWithGoogle()
+        case .onGoogleTap: signIn(with: .google)
+        case .onAppleTap: signIn(with: .apple)
         }
     }
 
-    /// Signing in with Google here comes back to this screen; the invite is checked again then, e.g. to catch my own invite.
+    /// Signing in here comes back to this screen; the invite is checked again then, e.g. to catch my own invite.
     private func observe() {
         guard !isObserving else { return }
         isObserving = true
@@ -52,16 +53,19 @@ final class JoinTeamViewModel: BaseViewModel<JoinTeamState, JoinTeamAction, Join
         updateState { $0.isLoading = false }
     }
 
-    private func signInWithGoogle() {
+    private func signIn(with provider: SignInProvider) {
         guard !state.isSigningIn else { return }
         launch { [self] in
-            updateState { $0.isSigningIn = true }
+            updateState { $0.signingInWith = provider }
             do throws(AuthError) {
-                try await authRepository.signInWithGoogle()
+                switch provider {
+                case .google: try await authRepository.signInWithGoogle()
+                case .apple: try await authRepository.signInWithApple()
+                }
             } catch {
                 if let key = error.messageKey { sendEvent(.showMessage(Strings.text(key))) }
             }
-            updateState { $0.isSigningIn = false }
+            updateState { $0.signingInWith = nil }
         }
     }
 

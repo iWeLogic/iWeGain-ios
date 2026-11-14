@@ -122,9 +122,11 @@ private struct SignInToJoin: View {
                 .foregroundStyle(Color.textSecondary)
                 .multilineTextAlignment(.center)
             Spacer(minLength: 0)
+            AppleSignInButton(isLoading: state.signingInWith == .apple, action: { onAction(.onAppleTap) })
+                .disabled(state.isSigningIn)
             Button { onAction(.onGoogleTap) } label: {
                 HStack(spacing: Spacing.x12) {
-                    if state.isSigningIn {
+                    if state.signingInWith == .google {
                         ProgressView()
                     } else {
                         Image("ic_google").renderingMode(.original).resizable().frame(width: 20, height: 20)

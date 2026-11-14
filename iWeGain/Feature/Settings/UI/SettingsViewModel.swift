@@ -139,7 +139,7 @@ final class SettingsViewModel: BaseViewModel<SettingsState, SettingsAction, Sett
         case .cancelled: nil
         case .noInternet: Strings.text("auth_error_no_internet")
         case .wrongAccount: Strings.text("auth_error_wrong_account")
-        case .noGoogleAccount, .tooManyRequests, .notConfigured, .methodDisabled, .unknown: Strings.text("settings_delete_account_failed")
+        case .noGoogleAccount, .tooManyRequests, .notConfigured, .methodDisabled, .accountExists, .unknown: Strings.text("settings_delete_account_failed")
         }
     }
 
@@ -152,7 +152,8 @@ final class SettingsViewModel: BaseViewModel<SettingsState, SettingsAction, Sett
             name: title ?? Strings.text("settings_account_fallback_name"),
             detail: [user.email, user.phoneNumber].compactMap { $0 }.first { $0 != title },
             memberSince: user.createdAt.map { Strings.format("settings_member_since", $0.formatted(.dateTime.month(.wide).year())) },
-            photo: profile?.photo
+            photo: profile?.photo,
+            confirmsWithApple: user.provider == .apple
         )
     }
 }

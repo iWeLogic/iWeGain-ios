@@ -29,9 +29,21 @@ final class Router {
         pop()
     }
 
+    /// Hands the picked exercise to the screen below the library once, clearing it.
+    func takePickedExercise() -> String? {
+        defer { pickedExerciseId = nil }
+        return pickedExerciseId
+    }
+
     /// Select training returns [trainingId] to the schedule form it was opened from.
     func returnPickedTraining(_ trainingId: String) {
         pickedTrainingId = trainingId
         pop()
+    }
+
+    /// Hands the picked training to the schedule form once, clearing it.
+    func takePickedTraining() -> String? {
+        defer { pickedTrainingId = nil }
+        return pickedTrainingId
     }
 }

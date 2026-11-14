@@ -30,6 +30,8 @@ struct AccountUi: Equatable {
     let detail: String?
     let memberSince: String?
     var photo: Data?
+    /// Deleting the account is confirmed with the Apple ID instead of the Google account.
+    var confirmsWithApple = false
 }
 
 enum SettingsAction {

@@ -18,15 +18,16 @@ final class ProfileRepository {
         self.teamRepository = teamRepository
     }
 
-    /// On sign-in, an account that has never set its own name and photo starts with the Google account's: the
-    /// name split into name and surname, and its photo. It happens once; after that My profile decides, even
-    /// when the photo is removed. Offline it's tried again on the next start.
+    /// On sign-in, an account that has never set its own name and photo starts with the Google account's (or the
+    /// name Apple gives): the name split into name and surname, and its photo. It happens once; after that My
+    /// profile decides, even when the photo is removed. Offline it's tried again on the next start. Tried again
+    /// when the name arrives: Apple's comes just after the sign-in.
     func start() {
         guard startTask == nil else { return }
         startTask = Task { [self] in
-            var lastId: String?
-            for await user in authRepository.observeUser() where user?.id != lastId {
-                lastId = user?.id
+            var last: (id: String?, name: String?) = (nil, nil)
+            for await user in authRepository.observeUser() where user?.id != last.id || user?.name != last.name {
+                last = (user?.id, user?.name)
                 if let user { await importAccountProfile(user) }
             }
         }

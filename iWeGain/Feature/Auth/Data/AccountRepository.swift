@@ -35,14 +35,14 @@ final class AccountRepository {
         await clearDevice()
     }
 
-    /// Deletes the account for good: after the user confirms their Google account, all of their data in
+    /// Deletes the account for good: after the user confirms their Google account or Apple ID, all of their data in
     /// Firestore, then the account itself, then this device's copy. The app then starts over as an empty guest.
     /// [AuthError.cancelled] when they closed the account picker.
     func deleteAccount() async throws(AuthError) {
         guard network.isOnline else { throw .noInternet }
         guard let uid = authRepository.currentUser?.id else { throw .unknown }
         // First, so nothing is deleted when the account itself couldn't be.
-        try await authRepository.reauthenticateWithGoogle()
+        try await authRepository.reauthenticate()
         await pushRepository.unregister()
         do {
             try await remote.deleteUserData(uid: uid)

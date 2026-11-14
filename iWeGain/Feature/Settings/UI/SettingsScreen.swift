@@ -9,26 +9,23 @@ struct SettingsRoot: View {
     private let onNavigateToMyTeam: () -> Void
     private let onNavigateToMyProfile: () -> Void
     private let onNavigateToTeamsImIn: () -> Void
-    private let onDesignCatalogTap: () -> Void
 
     init(
         viewModel: @autoclosure () -> SettingsViewModel,
         onNavigateToSignIn: @escaping () -> Void,
         onNavigateToMyTeam: @escaping () -> Void,
         onNavigateToMyProfile: @escaping () -> Void,
-        onNavigateToTeamsImIn: @escaping () -> Void,
-        onDesignCatalogTap: @escaping () -> Void
+        onNavigateToTeamsImIn: @escaping () -> Void
     ) {
         _viewModel = State(initialValue: viewModel())
         self.onNavigateToSignIn = onNavigateToSignIn
         self.onNavigateToMyTeam = onNavigateToMyTeam
         self.onNavigateToMyProfile = onNavigateToMyProfile
         self.onNavigateToTeamsImIn = onNavigateToTeamsImIn
-        self.onDesignCatalogTap = onDesignCatalogTap
     }
 
     var body: some View {
-        SettingsScreen(state: viewModel.state, onAction: viewModel.onAction, onDesignCatalogTap: onDesignCatalogTap)
+        SettingsScreen(state: viewModel.state, onAction: viewModel.onAction)
             .onEvents(of: viewModel) { event in
                 switch event {
                 case .navigateToSignIn: onNavigateToSignIn()
@@ -56,7 +53,6 @@ struct SettingsRoot: View {
 struct SettingsScreen: View {
     let state: SettingsState
     let onAction: (SettingsAction) -> Void
-    var onDesignCatalogTap: () -> Void = {}
 
     var body: some View {
         let settings = state.settings
@@ -103,10 +99,6 @@ struct SettingsScreen: View {
                         SettingsRow(icon: "ic_trash", title: "settings_delete_account", isDestructive: true, action: { onAction(.onDeleteAccountTap) })
                     }
                 }
-                #if DEBUG
-                Button("Design system", systemImage: "paintpalette", action: onDesignCatalogTap)
-                    .buttonStyle(.appSecondary)
-                #endif
             }
             .padding(.horizontal, Spacing.x16)
             .padding(.vertical, Spacing.x12)
@@ -146,7 +138,7 @@ struct SettingsScreen: View {
             let secondsLeft = state.deleteCountdown ?? 0
             ConfirmDialog(
                 title: Strings.text("settings_delete_account_title"),
-                message: Strings.text("settings_delete_account_message"),
+                message: Strings.text(state.account?.confirmsWithApple == true ? "settings_delete_account_message_apple" : "settings_delete_account_message"),
                 confirmText: secondsLeft > 0 ? Strings.format("settings_delete_account_countdown", secondsLeft) : Strings.text("settings_delete_account"),
                 dismissText: Strings.text("action_cancel"),
                 isDestructive: true,

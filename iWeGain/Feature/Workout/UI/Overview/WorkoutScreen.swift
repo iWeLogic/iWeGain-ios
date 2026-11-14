@@ -3,9 +3,9 @@ import SwiftUI
 struct WorkoutRoot: View {
     @State private var viewModel: WorkoutViewModel
     @State private var errorMessage: LocalizedStringResource?
-    /// An exercise picked in the library, handed over by the navigation; [onPickedExerciseHandled] clears it.
+    /// An exercise picked in the library, handed over by the navigation; [takePickedExercise] takes it, once.
     private let pickedExerciseId: String?
-    private let onPickedExerciseHandled: () -> Void
+    private let takePickedExercise: () -> String?
     private let onNavigateToExercise: (Int) -> Void
     private let onNavigateToExerciseLibrary: () -> Void
     private let onClose: () -> Void
@@ -13,14 +13,14 @@ struct WorkoutRoot: View {
     init(
         viewModel: @autoclosure () -> WorkoutViewModel,
         pickedExerciseId: String?,
-        onPickedExerciseHandled: @escaping () -> Void,
+        takePickedExercise: @escaping () -> String?,
         onNavigateToExercise: @escaping (Int) -> Void,
         onNavigateToExerciseLibrary: @escaping () -> Void,
         onClose: @escaping () -> Void
     ) {
         _viewModel = State(initialValue: viewModel())
         self.pickedExerciseId = pickedExerciseId
-        self.onPickedExerciseHandled = onPickedExerciseHandled
+        self.takePickedExercise = takePickedExercise
         self.onNavigateToExercise = onNavigateToExercise
         self.onNavigateToExerciseLibrary = onNavigateToExerciseLibrary
         self.onClose = onClose
@@ -40,9 +40,10 @@ struct WorkoutRoot: View {
             .keepsScreenOn()
             .task { viewModel.onAction(.onAppear) }
             .onChange(of: pickedExerciseId, initial: true) { _, id in
-                guard let id else { return }
+                // Taking the pick clears it: this can run twice for one pick (the change, then "initial" as the
+                // view reappears, both with the old value), and only the first run may use it.
+                guard id != nil, let id = takePickedExercise() else { return }
                 viewModel.onAction(.onExercisePicked(id: id))
-                onPickedExerciseHandled()
             }
     }
 }

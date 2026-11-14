@@ -2,9 +2,12 @@ import Foundation
 
 struct SignInState: Equatable {
     var isGoogleLoading = false
+    var isAppleLoading = false
+    var isSigningIn: Bool { isGoogleLoading || isAppleLoading }
 }
 
 enum SignInAction {
+    case onAppleTap
     case onGoogleTap
     case onCloseTap
 }
@@ -25,6 +28,7 @@ extension AuthError {
         case .notConfigured: "auth_error_not_configured"
         case .methodDisabled: "auth_error_method_disabled"
         case .wrongAccount: "auth_error_wrong_account"
+        case .accountExists: "auth_error_account_exists"
         case .unknown: "auth_error_unknown"
         }
     }

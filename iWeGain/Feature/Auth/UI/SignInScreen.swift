@@ -43,6 +43,8 @@ struct SignInScreen: View {
             .padding(.horizontal, Spacing.x24)
             .padding(.vertical, Spacing.x40)
             VStack(spacing: Spacing.x12) {
+                AppleSignInButton(isLoading: state.isAppleLoading, action: { onAction(.onAppleTap) })
+                    .disabled(state.isSigningIn)
                 Button { onAction(.onGoogleTap) } label: {
                     HStack(spacing: Spacing.x12) {
                         if state.isGoogleLoading {
@@ -54,7 +56,7 @@ struct SignInScreen: View {
                     }
                 }
                 .buttonStyle(.appSecondary)
-                .disabled(state.isGoogleLoading)
+                .disabled(state.isSigningIn)
                 LegalConsentText()
             }
             .padding(Spacing.x16)
@@ -67,6 +69,26 @@ struct SignInScreen: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) { Button(role: .close) { onAction(.onCloseTap) } }
         }
+    }
+}
+
+/// "Continue with Apple" in the same shape as the Google button; Apple allows a custom button with its logo.
+struct AppleSignInButton: View {
+    let isLoading: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: Spacing.x12) {
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Image(systemName: "apple.logo").font(.system(size: 20, weight: .medium)).frame(width: 20, height: 20)
+                }
+                Text("sign_in_apple")
+            }
+        }
+        .buttonStyle(.appSecondary)
     }
 }
 

@@ -10,6 +10,13 @@ nonisolated struct AuthUser: Equatable, Sendable {
     let createdAt: Date?
     /// The sign-in provider's picture (the Google account photo), if any.
     var photoUrl: URL?
+    /// What confirms the account again, e.g. before deleting it.
+    var provider: SignInProvider?
+}
+
+nonisolated enum SignInProvider: Equatable, Sendable {
+    case google
+    case apple
 }
 
 nonisolated enum AuthError: Error, Equatable {
@@ -24,5 +31,7 @@ nonisolated enum AuthError: Error, Equatable {
     case methodDisabled
     /// Confirming the account with a different Google account than the signed-in one.
     case wrongAccount
+    /// This email already has an account with another sign-in method. Signing in that way adds this one.
+    case accountExists
     case unknown
 }

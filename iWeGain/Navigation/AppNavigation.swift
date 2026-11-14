@@ -197,8 +197,7 @@ struct AppNavigation: View {
                 onNavigateToSignIn: { router.push(.signIn) },
                 onNavigateToMyTeam: { router.push(.myTeam) },
                 onNavigateToMyProfile: { router.push(.profileEditor(isMe: true)) },
-                onNavigateToTeamsImIn: { router.push(.teamsImIn) },
-                onDesignCatalogTap: { router.push(.designCatalog) }
+                onNavigateToTeamsImIn: { router.push(.teamsImIn) }
             )
         }
     }
@@ -212,7 +211,7 @@ struct AppNavigation: View {
                 TrainingRoot(
                     viewModel: container.makeTrainingViewModel(trainingId: trainingId),
                     pickedExerciseId: pickedExerciseId,
-                    onPickedExerciseHandled: { router.pickedExerciseId = nil },
+                    takePickedExercise: { router.takePickedExercise() },
                     onNavigateToExerciseLibrary: { router.push(.exerciseLibrary) },
                     onNavigateToWorkout: { openWorkout(in: tab, restExerciseIndex: $0) },
                     onClose: { router.pop() }
@@ -224,7 +223,7 @@ struct AppNavigation: View {
                 WorkoutRoot(
                     viewModel: container.makeWorkoutViewModel(),
                     pickedExerciseId: pickedExerciseId,
-                    onPickedExerciseHandled: { router.pickedExerciseId = nil },
+                    takePickedExercise: { router.takePickedExercise() },
                     onNavigateToExercise: { openWorkoutExercise($0, in: tab) },
                     onNavigateToExerciseLibrary: { router.push(.exerciseLibrary) },
                     onClose: { closeWorkout() }
@@ -257,7 +256,7 @@ struct AppNavigation: View {
                 EditWorkoutRoot(
                     viewModel: container.makeEditWorkoutViewModel(workoutId: workoutId),
                     pickedExerciseId: pickedExerciseId,
-                    onPickedExerciseHandled: { router.pickedExerciseId = nil },
+                    takePickedExercise: { router.takePickedExercise() },
                     onNavigateToExerciseLibrary: { router.push(.exerciseLibrary) },
                     onClose: { router.path.removeAll { $0 == route } }
                 )
@@ -268,7 +267,7 @@ struct AppNavigation: View {
                 ScheduleRoot(
                     viewModel: container.makeScheduleViewModel(date: Day(epochDay: epochDay), entryId: entryId),
                     pickedTrainingId: pickedTrainingId,
-                    onPickedTrainingHandled: { router.pickedTrainingId = nil },
+                    takePickedTraining: { router.takePickedTraining() },
                     onNavigateToSelectTraining: { router.push(.selectTraining(selectedTrainingId: $0)) },
                     onClose: { router.pop() }
                 )
