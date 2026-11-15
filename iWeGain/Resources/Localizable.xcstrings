@@ -40592,9 +40592,6 @@
         }
       }
     },
-    "Test crash (temporary)" : {
-
-    },
     "training_add_exercise" : {
       "extractionState" : "manual",
       "localizations" : {
