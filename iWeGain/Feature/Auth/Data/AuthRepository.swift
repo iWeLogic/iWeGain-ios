@@ -30,6 +30,18 @@ final class AuthRepository {
         listener = auth.addStateDidChangeListener { [weak self] _, user in
             self?.userState.send(user.map(Self.authUser))
         }
+        if let user = auth.currentUser, Self.sessionProvider(of: user) == nil {
+            // Signed in before the app remembered how: the ID token says which provider this session used.
+            Task { [weak self] in
+                guard let provider = try? await user.getIDTokenResult().signInProvider else { return }
+                switch provider {
+                case GoogleAuthProviderID: Self.rememberSessionProvider(.google, of: user)
+                case "apple.com": Self.rememberSessionProvider(.apple, of: user)
+                default: return
+                }
+                self?.userState.send(Self.authUser(user))
+            }
+        }
     }
 
     var isConfigured: Bool { AppFirebase.isConfigured }
@@ -40,12 +52,14 @@ final class AuthRepository {
     func signInWithGoogle() async throws(AuthError) {
         guard isConfigured else { throw .notConfigured }
         try await signIn(with: try await googleCredential())
+        rememberCurrentSessionProvider(.google)
     }
 
     func signInWithApple() async throws(AuthError) {
         guard isConfigured else { throw .notConfigured }
         let apple = try await appleCredential()
         try await signIn(with: apple.firebase)
+        rememberCurrentSessionProvider(.apple)
         // Apple gives the name only on the first sign-in, and Firebase doesn't keep it.
         if let user = Auth.auth().currentUser, user.displayName?.nonBlank == nil, let name = apple.name {
             let change = user.createProfileChangeRequest()
@@ -55,7 +69,8 @@ final class AuthRepository {
         }
     }
 
-    /// Confirms the signed-in account again with the provider it uses (Google first when both are linked).
+    /// Confirms the signed-in account again with the provider this session signed in with (an Apple ID when the
+    /// person signed in with Apple, even if Google is linked too).
     /// Firebase only deletes an account that signed in a few minutes ago; picking another account fails with
     /// [AuthError.wrongAccount].
     func reauthenticate() async throws(AuthError) {
@@ -88,6 +103,7 @@ final class AuthRepository {
     func signOut() {
         guard isConfigured else { return }
         pendingLink = nil
+        UserDefaults.standard.removeObject(forKey: Self.sessionProviderKey)
         try? Auth.auth().signOut()
         GIDSignIn.sharedInstance.signOut()
     }
@@ -158,11 +174,42 @@ final class AuthRepository {
         )
     }
 
+    /// The provider this session signed in with, while it's still linked; otherwise Google first.
     private static func signInProvider(of user: FirebaseAuth.User) -> SignInProvider? {
         let ids = Set(user.providerData.map(\.providerID))
+        if let session = sessionProvider(of: user), ids.contains(providerId(session)) { return session }
         if ids.contains(GoogleAuthProviderID) { return .google }
         if ids.contains("apple.com") { return .apple }
         return nil
+    }
+
+    private static func providerId(_ provider: SignInProvider) -> String {
+        switch provider {
+        case .google: GoogleAuthProviderID
+        case .apple: "apple.com"
+        }
+    }
+
+    // How the current session signed in, stored as "<uid>|google" or "<uid>|apple".
+    private static let sessionProviderKey = "auth_session_provider"
+
+    private static func sessionProvider(of user: FirebaseAuth.User) -> SignInProvider? {
+        guard let value = UserDefaults.standard.string(forKey: sessionProviderKey) else { return nil }
+        switch value {
+        case "\(user.uid)|google": return .google
+        case "\(user.uid)|apple": return .apple
+        default: return nil
+        }
+    }
+
+    private static func rememberSessionProvider(_ provider: SignInProvider, of user: FirebaseAuth.User) {
+        UserDefaults.standard.set("\(user.uid)|\(provider == .google ? "google" : "apple")", forKey: sessionProviderKey)
+    }
+
+    private func rememberCurrentSessionProvider(_ provider: SignInProvider) {
+        guard let user = Auth.auth().currentUser else { return }
+        Self.rememberSessionProvider(provider, of: user)
+        userState.send(Self.authUser(user))
     }
 
     private func firebaseCall(_ call: () async throws -> Void) async throws(AuthError) {
