@@ -11,6 +11,8 @@ final class StatisticsViewModel: BaseViewModel<StatisticsState, StatisticsAction
         var metric: ExerciseMetric = .maximum
         /// The tapped bar; nil selects the latest bar with a workout.
         var barIndex: Int?
+        /// The slot of the touched exercise chart point; nil selects the latest.
+        var pointSlot: Int?
     }
 
     private let userRepository: UserRepository
@@ -54,9 +56,13 @@ final class StatisticsViewModel: BaseViewModel<StatisticsState, StatisticsAction
         case .onPeriodTap(let period):
             selection.period = period
             selection.barIndex = nil
+            selection.pointSlot = nil
             rebuild()
         case .onBarTap(let index):
             selection.barIndex = index
+            rebuild()
+        case .onPointTap(let slot):
+            selection.pointSlot = slot
             rebuild()
         case .onTrainingChooserTap: updateState { $0.picker = .training }
         case .onExerciseChooserTap: updateState { $0.picker = .exercise }
@@ -65,7 +71,9 @@ final class StatisticsViewModel: BaseViewModel<StatisticsState, StatisticsAction
             case .training:
                 selection.trainingId = option.id
                 selection.barIndex = nil
-            case .exercise: selection.exerciseId = option.id
+            case .exercise:
+                selection.exerciseId = option.id
+                selection.pointSlot = nil
             case nil: break
             }
             updateState { $0.picker = nil }
@@ -193,16 +201,20 @@ final class StatisticsViewModel: BaseViewModel<StatisticsState, StatisticsAction
             kg.map { LineChartPoint(slot: index, value: unit.fromKg($0)) }
         }
         guard let first = series.first?.value, let last = series.last?.value else {
-            return ExerciseChartUi(exerciseId: exercise.id, exerciseName: exercise.name, metric: metric, value: nil, delta: nil, trend: .flat, chart: nil)
+            return ExerciseChartUi(exerciseId: exercise.id, exerciseName: exercise.name, metric: metric, value: nil, delta: nil, caption: nil, trend: .flat, chart: nil)
         }
         let grid = StatisticsMath.gridLines(series.map(\.value))
-        let change = last - first
+        // The touched point, by default the latest.
+        let selectedIndex = series.firstIndex { $0.slot == selection.pointSlot } ?? series.count - 1
+        let selected = series[selectedIndex]
+        let change = selected.value - first
         return ExerciseChartUi(
             exerciseId: exercise.id,
             exerciseName: exercise.name,
             metric: metric,
-            value: weightText(metric == .maximum ? Weights.number(last) : Int(last.rounded()).formatted()),
-            delta: series.count > 1 ? signedWeight(change) : nil,
+            value: weightText(metric == .maximum ? Weights.number(selected.value) : Int(selected.value.rounded()).formatted()),
+            delta: selectedIndex > 0 ? signedWeight(change) : nil,
+            caption: slotCaption(period, slots[selected.slot]),
             trend: Self.trend(change),
             chart: LineChartUi(
                 slotCount: slots.count,
@@ -210,7 +222,8 @@ final class StatisticsViewModel: BaseViewModel<StatisticsState, StatisticsAction
                 grid: grid,
                 gridLabels: grid.map(Self.compactNumber),
                 ticks: lineTicks(period, slots),
-                description: Strings.format("stats_exercise_chart_description", exercise.name, weightText(Weights.number(first)), weightText(Weights.number(last)))
+                description: Strings.format("stats_exercise_chart_description", exercise.name, weightText(Weights.number(first)), weightText(Weights.number(last))),
+                selectedSlot: selected.slot
             )
         )
     }

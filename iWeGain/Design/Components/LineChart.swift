@@ -11,7 +11,8 @@ struct LineChartTick: Equatable {
 }
 
 /// Data for [LineChart]: [slotCount] equal slots (days or months); each point sits in the middle of its
-/// slot. [grid] holds three values, top first, with their [gridLabels].
+/// slot. [grid] holds three values, top first, with their [gridLabels]. [selectedSlot] is the slot of the
+/// highlighted point (nil highlights the latest).
 struct LineChartUi: Equatable {
     let slotCount: Int
     let points: [LineChartPoint]
@@ -19,11 +20,23 @@ struct LineChartUi: Equatable {
     let gridLabels: [String]
     let ticks: [LineChartTick]
     let description: String
+    var selectedSlot: Int? = nil
+
+    /// The highlighted point's slot: [selectedSlot] when it has a point, otherwise the latest.
+    var highlightedSlot: Int? {
+        if let selectedSlot, points.contains(where: { $0.slot == selectedSlot }) { return selectedSlot }
+        return points.last?.slot
+    }
 }
 
 /// Progress line with a soft fill, a dot per value, gridlines with labels and x-axis labels (Figma "Line Chart").
+/// Touching the chart selects the point nearest to the finger ([onPointSelect] gets its slot), and the selection
+/// follows the finger while it slides.
 struct LineChart: View {
     let chart: LineChartUi
+    var onPointSelect: (Int) -> Void = { _ in }
+
+    @State private var width: CGFloat = 0
 
     private static let left: CGFloat = 28
     private static let top: CGFloat = 8
@@ -59,9 +72,16 @@ struct LineChart: View {
                 context.fill(area, with: .color(.accentPrimary.opacity(0.14)))
                 context.stroke(line, with: .color(.accentPrimary), style: StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
             }
+            let selected = chart.points.firstIndex { $0.slot == chart.highlightedSlot }
+            if let selected {
+                var guide = Path()
+                guide.move(to: CGPoint(x: points[selected].x, y: Self.top))
+                guide.addLine(to: CGPoint(x: points[selected].x, y: Self.bottom))
+                context.stroke(guide, with: .color(.accentPrimary.opacity(0.4)), lineWidth: 1)
+            }
             for (index, point) in points.enumerated() {
-                if index == points.count - 1 {
-                    // The latest value: a larger dot with a ring in the card color.
+                if index == selected {
+                    // The selected value: a larger dot with a ring in the card color.
                     context.fill(Self.circle(point, 9), with: .color(.bgSurface))
                     context.fill(Self.circle(point, 6), with: .color(.accentPrimary))
                 } else {
@@ -77,8 +97,18 @@ struct LineChart: View {
             }
         }
         .frame(height: 150)
+        .contentShape(.rect)
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
+        .onTouchLocation { select(at: $0) }
         .accessibilityElement()
         .accessibilityLabel(chart.description)
+    }
+
+    private func select(at x: CGFloat) {
+        guard !chart.points.isEmpty, width > Self.left else { return }
+        let slot = Double((x - Self.left) / (width - Self.left) * CGFloat(chart.slotCount)) - 0.5
+        guard let nearest = chart.points.min(by: { abs(Double($0.slot) - slot) < abs(Double($1.slot) - slot) })?.slot else { return }
+        if nearest != chart.highlightedSlot { onPointSelect(nearest) }
     }
 
     private static func label(_ text: String) -> Text {

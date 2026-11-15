@@ -46,10 +46,12 @@ struct ExerciseChartUi: Equatable {
     let exerciseId: String
     let exerciseName: String
     let metric: ExerciseMetric
-    /// Latest value in the range: "100 kg". nil when the exercise wasn't done in this period or before.
+    /// Selected (by default the latest) value in the range: "100 kg". nil when the exercise wasn't done in this period or before.
     let value: String?
-    /// Change across the range: "+7.5 kg"; nil with fewer than two values.
+    /// Change from the range's first value to the selected one: "+7.5 kg"; nil when the first value is selected.
     let delta: String?
+    /// The selected value's day (month for a year): "Fri, Oct 2", "September 2026".
+    let caption: String?
     let trend: Trend
     let chart: LineChartUi?
 }
@@ -72,6 +74,8 @@ enum StatisticsAction {
     case onInviteTap
     case onPeriodTap(StatsPeriod)
     case onBarTap(Int)
+    /// A point of the exercise chart was touched; the slot is its day (month for a year).
+    case onPointTap(slot: Int)
     case onTrainingChooserTap
     case onExerciseChooserTap
     case onOptionSelected(ChooserOptionUi)

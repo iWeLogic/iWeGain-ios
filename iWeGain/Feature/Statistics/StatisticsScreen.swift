@@ -196,7 +196,10 @@ private struct ExerciseCard: View {
                         Text(delta).textStyle(.subhead).foregroundStyle(chart.trend.color)
                     }
                 }
-                LineChart(chart: line)
+                if let caption = chart.caption {
+                    Text(caption).textStyle(.footnote).foregroundStyle(Color.textSecondary)
+                }
+                LineChart(chart: line, onPointSelect: { onAction(.onPointTap(slot: $0)) })
             } else {
                 Text(Strings.format("stats_no_exercise_data", chart.exerciseName))
                     .textStyle(.callout)
@@ -261,7 +264,7 @@ private extension ExerciseMetric {
                     barWidth: 20
                 ),
                 exerciseChart: ExerciseChartUi(
-                    exerciseId: "bench_press", exerciseName: "Bench Press", metric: .maximum, value: "100 kg", delta: "+7.5 kg", trend: .up,
+                    exerciseId: "bench_press", exerciseName: "Bench Press", metric: .maximum, value: "100 kg", delta: "+7.5 kg", caption: "Oct 29", trend: .up,
                     chart: LineChartUi(
                         slotCount: 30,
                         points: [LineChartPoint(slot: 0, value: 92.5), LineChartPoint(slot: 14, value: 97.5), LineChartPoint(slot: 28, value: 100)],
